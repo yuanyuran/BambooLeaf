@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>淘学吧登陆界面</title>
+<style type="text/css">
+.bigtext{
+font-size: 40px;
+position:relative;
+top:-10px;
+}
+.scale{
+width:  400px;
+height: 200px;
+position:absolute;
+top:50%;
+left:50%;
+margin:-100px 0 0 -200px;
+}
+
+} 
+</style>
+<script type="text/javascript" src="javascripts/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="javascripts/bmob.js"></script>
+<!--
+<link type="text/css" rel="Stylesheet" href="plugins/sitemap/styles/sitemap.css" />
+<link type="text/css" rel="Stylesheet" href="plugins/page_notes/styles/page_notes.css" />
+-->
+</head>
+
+<body>
+    <div id="base" class="scale" align="center" >
+      <!-- Unnamed (Image) -->
+      <div>
+        <img src="images/登陆/u2.png"/>
+		<span class="bigtext">商家后台管理系统</span>		
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div>
+        <!-- Unnamed () -->
+        <div class="text">
+          <p>
+		  <span>用户名：</span>
+		  <input id="user_name" type="text" value=""/>
+		  </p>
+        </div>
+      </div>
+
+      <!-- Unnamed (形状) -->
+      <div>
+        <!-- Unnamed () -->
+        <div>
+          <p>
+		  <span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span>密码：</span>
+		  <input id="passwd" type="password" value=""/>
+		  </p>
+        </div>
+      </div>
+
+      
+      <!-- Unnamed (提交按钮) -->
+      <div id="u12" align="right">
+        <input id="loading" type="button" onClick="window.close()" value="&nbsp;&nbsp;&nbsp;&nbsp;登陆&nbsp;&nbsp;&nbsp;&nbsp;"/>
+		<input id="register" type="button"  value="免费注册"/>
+		<a id="forget" href="javascript:void()" onClick="window.close()" />忘记密码？</a>
+      </div>
+    </div>
+  </body>
+  
+  <script type="text/javascript">
+	$(function(){
+		//服务器
+		//init();
+	});
+	$("#loading").click(function(){
+		//alert('test');
+		window.open('首页-学生信息.html');
+		//location.href="首页-学生信息.html";
+		//window.history.back(-1); 
+
+	});
+	$("#register").click(function(){
+		//alert('test');
+		window.open('register_home.html');
+		//location.href="首页-学生信息.html";
+		//window.history.back(-1); 
+
+	});
+	
+  </script>
+</html>

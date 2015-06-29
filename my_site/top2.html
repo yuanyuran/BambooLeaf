@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="javascripts/jquery.cookie.js" type="text/javascript"></script>
+	<link  rel="stylesheet" href="css/page_style.css" type="text/css" />
+	
+   </head>
+   
+   <body>
+		<div class="Container"><!--style="min-height:144px;"-->
+		  <div class="body_left_top" id="student_info">
+			<div class="menu" >学生信息</div>
+		  </div>
+		  
+		  <div class="body_left_top" id="teacher_info">
+			<div class="menu">教师信息</div>
+		  </div>
+		  
+		  <div class="body_left_top" id="course_info">
+			<div class="menu">课程安排</div>
+		  </div>
+		  
+		  <div class="body_left_top" id="school_info">
+			<div class="menu">学校信息</div>
+		  </div>
+		  
+		  <div class="body_left_top" id="other_info">
+			<div class="menu">课时统计</div>
+		  </div>
+	  </div>
+   </body>
+   
+   <script>
+		$("#student_info").click(function(){
+			window.parent.left.location="student/left_student.html"; 
+			window.parent.right.location="student/right_student_first.html"; 
+		});
+		$("#teacher_info").click(function(){
+			window.parent.left.location="teacher/left_teacher.html"; 
+			window.parent.right.location="teacher/right_teacher_first.html"; 
+		});
+		$("#course_info").click(function(){
+			window.parent.left.location="class/left_class.html"; 
+			window.parent.right.location="class/right_class_table.html"; 
+		});
+		$("#school_info").click(function(){
+			window.parent.left.location="school/left_school.html"; 
+			window.parent.right.location="school/right_school_first.html"; 
+		});
+   </script>
+   </html>

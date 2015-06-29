@@ -1,0 +1,849 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../javascripts/bmob.js"></script>
+    <script type="text/javascript" src="../javascripts/bmob_db_test.js"></script>
+    <script type="text/javascript" src="../javascripts/bmobSocketIo.js"></script>
+    <script type="text/javascript" src="../javascripts/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../javascripts/highcharts.js"></script>
+    <script type="text/javascript" src="../javascripts/my_local.js"></script>
+    <link rel="stylesheet" type="text/css" href="../javascripts/jquery-ui-1.11.4/jquery-ui.css"/>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css" />
+    <style>
+    	.delete_connecter{
+			font-size:24px;
+		}
+		input{
+			Width:120px;
+		}
+		
+		select{
+			Width:120px;
+		}
+		
+		span{
+			margin-left:15px;
+		}
+		
+		td{
+			text-align:right
+		};
+		
+    </style>
+  </head>
+  
+   <body>
+		<div style="height=60px">
+			<span id="title">当前位置》学生信息》学生详情</span>
+		</div>
+        <hr/>
+        <table width="769">
+			<tr>
+			<th ><div id="info" class="detail_tab" >个人详情</div></td>
+            <th ><div id="class_record" class="detail_tab" >上课记录</div></td>
+            <th ><div id="track" class="detail_tab">成绩追踪</div></td>
+            <th ><div id="schedule" class="detail_tab" >作息时间</div></td>
+            </tr>
+         </table>
+		<hr/>
+		<div id="student_info" style=" height=60px">
+        	<span style="margin-left:20px">学生详情:</span>
+        	<button style="margin-left:20px" id="edit">编辑</button>
+            <button style="margin-left:20px" id="delete">删除</button>
+            <br/><br/>
+        	<table cellspacing="0" cellpadding="5">
+			<tr>
+            <td ></td>
+			<td><span>姓名:</span></td>
+            <td ><span></span></td>
+            <td><span>编号:</span></td>
+            <td ><span></span></td>
+            <td ><span>学校:</span></td>
+            <td ><span></span></td>
+            <td ><span>年级:</span></td>
+            <td ><span></span></td>
+            <!--
+            <td >
+                <select id="grade" >  
+                    <option value="1">一年级</option>  
+                    <option value="2">二年级</option>  
+                    <option value="3">三年级</option> 
+                    <option value="4">四年级</option> 
+                    <option value="5">五年级</option>  
+                    <option value="6">六年级</option> 
+                    <option value="7">初一</option>  
+                    <option value="8">初二</option>  
+                    <option value="9">初三</option> 
+                    <option value="10">高一</option>  
+                    <option value="11">高二</option> 
+                    <option value="12">高三</option> 
+                </select>  
+            </td>
+            -->
+            </tr>
+            <tr>
+            <td ></td>
+			<td ><span>联系电话:</span></td>
+            <td ><span></span></td>
+            <td ><span>关系:</span></td>
+            <td ><span ></span></td>
+            <td ><span>姓名:</span></td>
+            <td ><span></span></td>
+            </tr>
+            <tr>
+            <td ></td>
+            <td ><span>学生性别:</span></td>
+            <td ><span></span></td>
+            <td ><span>学管:</span></td>
+            <td ><span ></span></td>
+            <td ><span>状态:</span></td>
+            <td ><span></span></td>
+            <td ><span>学生电话:</span></td>
+            <td ><span></span></td>
+            </tr>
+            <tr>
+            <td ><span>班级:</span></td>
+            <td ><span>购买课时:</span></td>
+            <td ><span></span></td>
+            <td ><span>赠送课时:</span></td>
+            <td ><span ></span></td>
+            <td ><span>剩余课时:</span></td>
+            <td ><span></span></td>
+            <td ><span>剩余赠送课时:</span></td>
+            <td ><span></span></td>
+            </tr>
+            <tr>
+            <td ><span>一对一:</span></td>
+            <td ><span>购买课时:</span></td>
+            <td ><span></span></td>
+            <td ><span>赠送课时:</span></td>
+            <td ><span ></span></td>
+            <td ><span>剩余课时:</span></td>
+            <td ><span></span></td>
+            <td ><span>剩余赠送课时:</span></td>
+            <td ><span></span></td>
+            </tr>
+             <tr>
+            <td ><span>托管:</span></td>
+            <td ><span>截止日期:</span></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            </tr>
+            <tr>
+            <td ></td>
+            <td ><span>科目:</span></td>
+            <td ><span></span></td>
+            <td ><span>形式:</span></td>
+            <td ><span ></span></td>
+            <td ><span>老师:</span></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            </tr>
+            <tr>
+            <td ></td>
+            <td ><span>备注:</span></td>
+            <td ><span></span></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            <td ></td>
+            </tr>
+        	</table>
+            <hr/>
+            <span style="margin-left:20px">缴费记录:</span>
+        	<button style="margin-left:20px" id="edit">新增</button><br/><br/>
+            <table border="1" cellspacing="0" cellpadding="5" id="add_new_money_record" ><!--style="display:none"-->
+                <tr> 
+                	<th >日期</th>
+                    <th >一对一课时</th>
+                    <th >赠送一对一课时</th>
+                    <th >班级课时</th>
+                    <th >赠送班级课时</th>
+                    <th >托管截止时间</th>
+                    <th >学管</th>
+                    <th >咨询老师</th>
+                    <th >功能</th>
+                </tr>
+                <tr>
+                    <td ><input type="text" class="datepicker"/></td>
+                    <td ><input type="text"/></td>
+                    <td ><input type="text"/></td>
+                    <td ><input type="text"/></td>
+                    <td ><input type="text"/></td>
+                    <td ><input type="text" class="datepicker"/></td>
+                    <td >
+                    	<select>
+                        	<option value="1">王老师</option>
+          					<option value="2">张老师</option>
+                        </select>
+                    </td>
+                    <td >
+                    	<select>
+                        	<option value="1">王老师</option>
+          					<option value="2">李老师</option>
+                        </select>
+                    </td>
+                    <td >
+                    	<button id="save_item">保存</button>
+                        <button id="delete_item">删除</button>
+                    </td>
+                </tr>
+            </table>
+            <br/><br/><br/>
+            <table border="1" cellspacing="0" cellpadding="5" id="add_new_money_record" ><!--style="display:none"-->
+                <tr> 
+                	<th >日期</th>
+                    <th >一对一课时</th>
+                    <th >赠送一对一课时</th>
+                    <th >班级课时</th>
+                    <th >赠送班级课时</th>
+                    <th >托管截止时间</th>
+                    <th >学管</th>
+                    <th >咨询老师</th>
+                    <th >功能</th>
+                </tr>
+                <tr>
+                    <td >2015/06/17</td>
+                    <td >80</td>
+                    <td >20</td>
+                    <td >100</td>
+                    <td >20</td>
+                    <td >2015/06/17</td>
+                    <td >王老师</td>
+                    <td >李老师</td>
+                    <td >
+                    	<button id="edit_item">编辑</button>
+                        <button id="delete_item">删除</button>
+                    </td>
+                </tr>
+            </table>
+		</div>
+        
+        <div id="class_log" style="display:none"> 
+        <select>
+          <option value="2015">2015</option>
+          <option value="2016">2016</option>
+          <option value="2017">2017</option>
+          <option value="2018">2018</option>
+          <option value="2019">2019</option>
+          <option value="2020">2020</option>
+          <option value="2021">2021</option>
+          <option value="2022">2022</option>
+          <option value="2023">2023</option>
+          <option value="2024">2024</option>
+          <option value="2025">2025</option>
+          <option value="2026">2026</option>
+          <option value="2027">2027</option>
+          <option value="2028">2028</option>
+          <option value="2029">2029</option>
+          <option value="2030">2030</option>
+        </select>
+		
+        <select>
+          <option value="一月">一月</option>
+          <option value="二月">二月</option>
+          <option value="三月">三月</option>
+          <option value="四月">四月</option>
+          <option value="五月">五月</option>
+          <option value="六月">六月</option>
+          <option value="七月">七月</option>
+          <option value="八月">八月</option>
+          <option value="九月">九月</option>
+          <option value="十月">十月</option>
+          <option value="十一月">十一月</option>
+          <option value="十二月">十二月</option>
+        </select>
+        
+        <select>
+          <option value="语文">语文</option>
+          <option value="数学">数学</option>
+          <option value="英语">英语</option>
+          <option value="物理">物理</option>
+          <option value="化学">化学</option>
+          <option value="生物">生物</option>
+          <option value="政治">政治</option>
+          <option value="历史">历史</option>
+          <option value="地理">地理</option>
+          <option value="奥数">奥数</option>
+        </select>
+        
+        <select>
+          <option value="1">一对一</option>
+          <option value="2">小班</option>
+        </select>
+        <br/><br/>
+        
+        <table  border="1" cellspacing="0" cellpadding="0" > <!--width="1200"-->
+			<tr>
+			<th align="center">日期</th>
+            <th align="center">时间</th>
+			<th align="center">课次</th>
+            <th align="center">形式</th>
+            <th align="center">科目</th>
+			<th align="center">教学内容</th>
+			<th align="center">学习建议</th>
+			<th align="center">课后作业</th>
+            <th align="center">评价</th>
+			</tr>
+			
+			
+			<tr>
+			<td>2015/05/26</td>
+            <td>18:00~20:00</td>
+			<td><a href="javascript:void()" onclick="">19</a></td>
+            <td>一对一</td>
+            <td>物理</td>
+			<td>高三物理牛顿第一定律</td>
+			<td>课后多复习</td>
+			<td>有</td>
+            <td>老师辛苦了</td>
+			</tr>
+            
+            <tr>
+			<td>2015/05/22</td>
+            <td>20:00~22:00</td>
+			<td><a href="javascript:void()" onclick="">18</a></td>
+            <td>小班</td>
+            <td>物理</td>
+			<td>高三物理牛顿第二定律</td>
+			<td>课后多复习</td>
+			<td>有</td>
+            <td>5条</td>
+			</tr>
+        </table>
+        <br/><br/>
+        
+        <table id="tbl_class_log_detail" border="1" cellspacing="0" cellpadding="5" > <!--width="1200"-->
+			<tr>
+			<td style="text-align:left">
+            	<span style="margin-left:15px">2015/05/22</span><span style="margin-left:25px">20:00~22:00</span></td>
+			</tr>
+			<tr>
+			<td style="text-align:left;">
+            	<div id="class_log_detail">
+                	<span style="margin-left:50px">课次:</span>
+                    <span style="margin-left:10px">19</span>
+                    <span style="margin-left:100px">形式:</span>
+                    <span style="margin-left:10px">一对一</span>
+                    <span style="margin-left:100px">科目:</span>
+                    <span style="margin-left:10px">语文</span>
+                    <br/><br/>
+                    <span style="margin-left:20px; vertical-align:top">教学内容:</span>
+                    <textarea style="margin-left:10px" rows="8" cols="100" id="class_content">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+                    </textarea>
+                    <br/><br/>
+                    <span style="margin-left:20px; vertical-align:top">教学建议:</span>
+                    <textarea style="margin-left:10px" rows="8" cols="100" id="class_suggestion">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget odio.
+                    </textarea>
+                    <br/><br/>
+                    <span style="margin-left:20px">课后作业:</span>
+                    <span style="margin-left:10px">有</span>
+                    <br/><br/>
+                    <span style="margin-left:50px">评价:</span>
+                    <span style="margin-left:10px">好好学习</span>
+                    <br/><br/>
+                    <span style="margin-left:50px">表现:</span>
+                    <span style="margin-left:10px">非常好</span>
+                    <br/><br/>
+                    <span style="margin-left:20px">家长评论:</span>
+                    <span style="margin-left:10px">老师辛苦了</span>
+                    <br/><br/>
+                </div>
+                
+            </td>
+			</tr>
+   
+        </table>
+        <br/><br/>
+        </div>
+        
+        <div id="class_table" style="display:none">
+        	<span>课表状态:</span>
+            <button  id="pre_week">上一周</button>
+            <button  id="next_week">下一周</button>
+            <br/><br />
+            <table id="tbl_schedule" border="1" cellspacing="0" cellpadding="5" > <!--width="1200"-->
+			<tr>
+			<th align="left">时间</th>
+			<th align="left">星期一</th>
+			<th align="left">星期二</th>
+			<th align="left">星期三</th>
+			<th align="left">星期四</th>
+			<th align="left">星期五</th>
+			<th align="left">星期六</th>
+			<th align="left">星期天</th>
+			</tr>
+			
+			
+			<tr>
+			<td>8:30~10:00</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            
+            <tr>
+			<td>10:00~11:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+		</table> 
+        </div>
+        <div id="score_track" style="display:none">
+			<div id="container" style="width: 1100px;"></div>
+            <hr/><br/>
+            <span>历史总成绩:</span><button style="margin-left:20px" id="add_new_score">新增</button><br/><br/>
+            <table id="score_table" border="1" cellspacing="0" cellpadding="0" > <!--width="1200"-->
+			<tr>
+			<th align="left">日期</th>
+			<th align="left">科目</th>
+			<th align="left">成绩</th>
+			<th align="left">总分</th>
+			<th align="left">备注</th>
+            <th align="left">功能</th>
+			</tr>
+			
+			<tr>
+			<td>2015-5-26</td>
+			<td>物理</td>
+			<td>85</td>
+			<td>100</td>
+			<td>无</td>
+            <td><button style="margin:10px;" class="">编辑</button><button style="margin:10px;" class='c_delete'>删除</button></td>
+			</tr>
+            </table>   
+        </div>
+        
+   </body>
+   	<script>
+		var num=1;
+		var datetxt="";
+		var week = 0;
+		var cur_Date;
+		var weekstrlist = new Array();
+		 weekstrlist[0] = "星期一";
+		 weekstrlist[1] = "星期二";
+		 weekstrlist[2] = "星期三";
+		 weekstrlist[3] = "星期四";
+		 weekstrlist[4] = "星期五";
+		 weekstrlist[5] = "星期六";
+		 weekstrlist[6] = "星期日";
+		 
+		 $("#pre_week").click(function(){
+			cur_Date.setDate(cur_Date.getDate() - 7); 
+			var day = cur_Date.getDay();
+			week--;
+			if(day == 0) day=7;
+			fresh_table(cur_Date, day, week, $("#tbl_schedule tr"));
+		});
+		
+		$("#next_week").click(function(){
+			cur_Date.setDate(cur_Date.getDate() + 7); 
+			var day = cur_Date.getDay();
+			week++;
+			if(day == 0) day=7;
+			fresh_table(cur_Date, day, week, $("#tbl_schedule tr"));
+		});
+		
+		$(document).ready(function(){
+			/*
+		   var value_id = $.cookie("student_id");
+       	   if(value_id == "null"){
+			  $("#title").text("当前位置》学生信息》新增学生");
+			  $("#save").show();
+			  $("#edit").hide();
+			  $("#delete").hide();
+			  $("#datepicker1").show();
+			  $("#student_info").attr("disabled", false); 
+		   } else {
+			  $("#save").hide();
+			  $("#edit").show();
+			  $("#delete").show();
+			  $("#datepicker1").hide();
+			  $("#student_info").attr("disabled", true); 
+			  var value_loc = $.cookie("student_type");
+			   if(value_loc == "2"){
+				  $("#title").text("当前位置》学生信息》冷冻学生》编辑学生");
+			   } else if(value_loc == "3"){
+				  $("#title").text("当前位置》学生信息》课时预警学生》编辑学生");
+			   } else if(value_loc == "4"){
+				  $("#title").text("当前位置》学生信息》课时完成学生》编辑学生");
+			   } else {
+				  $("#title").text("当前位置》学生信息》在读学生》编辑学生");
+			   }
+			 //show detail
+		   }
+		   */
+		   var myDate = new Date();
+			cur_Date = myDate;
+		   $(".datepicker").datepicker({
+			showOtherMonths: true,
+			selectOtherMonths: false,
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy/mm/dd',
+			//onSelect: function(dateText,inst){
+				//$("#duedate").val(dateText);
+			//}
+		});
+	   });
+	   
+	   $("#info").click(function() {
+			$("#student_info").show();
+			$("#score_track").hide();
+			$("#class_table").hide();
+			$("#class_log").hide();
+			$("#buttons").show();
+		});
+		$("#class_record").click(function() {
+			$("#student_info").hide();
+			$("#score_track").hide();
+			$("#class_table").hide();
+			$("#class_log").show();
+			$("#buttons").hide();
+		});
+		$("#schedule").click(function() {
+			$("#student_info").hide();
+			$("#score_track").hide();
+			$("#class_table").show();
+			$("#class_log").hide();
+			$("#buttons").hide();
+			var day = cur_Date.getDay();
+			if(day == 0) day=7;
+			fresh_table(cur_Date, day, week, $("#tbl_schedule tr"));
+		});
+		
+		$("#track").click(function() {
+			$("#score_track").show();
+			$("#student_info").hide();
+			$("#class_table").hide();
+			$("#class_log").hide();
+			$("#buttons").hide();
+			chart = new Highcharts.Chart({ 
+				chart: { 
+					renderTo: 'container', 
+					defaultSeriesType: 'line', //图表类别，可取值有:line、spline、area、areaspline、bar、column等 
+					marginRight: 130, 
+					marginBottom: 25 
+				}, 
+				title: { 
+					text: '各科成绩曲线', //设置一级标题 
+					x: -20 //center 
+				}, 
+				subtitle: { 
+					text: '--'+'王二', //设置二级标题 
+					x: -20 
+				}, 
+				xAxis: { 
+					categories: ['1', '2', '3', '4', '5', '6', 
+				'7', '8', '9', '10', '11', '12', '13', '14', '15']//设置x轴的标题 
+				}, 
+				yAxis: { 
+					title: { 
+						text: '成绩' //设置y轴的标题 
+					}, 
+					plotLines: [{ 
+						value: 0, 
+						width: 1, 
+						color: '#808080' 
+					}] 
+				}, 
+				tooltip: { 
+					formatter: function () { 
+						return '<b>' + this.series.name + '</b><br/>' + 
+				   this.x + ': ' + this.y ;  //鼠标放在数据点的显示信息，但是当设置显示了每个节点的数据项的值时就不会再有这个显示信息 
+					} 
+				}, 
+				legend: { 
+					layout: 'vertical', 
+					align: 'right', //设置说明文字的文字 left/right/top/ 
+					verticalAlign: 'top', 
+					x: -10, 
+					y: 100, 
+					borderWidth: 0 
+				}, 
+				//exporting: { 
+					//enabled: true, //用来设置是否显示‘打印’,'导出'等功能按钮，不设置时默认为显示 
+					//url: "http://localhost:49394/highcharts_export.aspx" //导出图片的URL，默认导出是需要连到官方网站去的哦 
+				//}, 
+				plotOptions: { 
+					line: { 
+						dataLabels: { 
+							enabled: true //显示每条曲线每个节点的数据项的值 
+						}, 
+						enableMouseTracking: false 
+					} 
+				}, 
+				series: [{ 
+					name: '语文', //每条线的名称 
+					data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6, 18.3, 13.9, 9.6]//每条线的数据 
+				}, { 
+					name: '数学', 
+					data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8, 24.1, 20.1, 14.1, 8.6, 2.5, 18.3, 13.9, 9.6] 
+				}, { 
+					name: '英语', 
+					data: [-0.9, 0.6, 3.5, 8.4, 13.5, 17.0, 18.6, 17.9, 14.3, 9.0, 3.9, 1.0, 18.3, 13.9, 9.6] 
+				}, { 
+					name: '物理', 
+					data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8, 18.3, 13.9, 9.6] 
+				}] 
+			});
+		});
+	   
+	   
+		$("#add_new_score").click(function() {
+			 var tr = "<tr><td><input type='text' class=\"datepicker_new\"></td><td><select><option value='1'>物理</option><option value='2'>数学</option><option value='3'>英语</option></select></td><td><input type='text'></td><td><input type='text'></td><td><input type='text'></td><td><button style='margin:10px;' class=''>保存</button><button style='margin:10px;' class='c_delete'>删除</button></td></tr>";
+			 //var Content = "<input type=\"text\" class=\"datepicker_new\">";
+                //$("#dvContent").html(Content);
+			 var $dom_tr=$("#score_table tr").eq(0);
+			//var tr="<input type='text' class=\"datepicker_new\">";
+			 $dom_tr.after(tr);
+			 //$("#score_table").after(tr);
+		});
+		
+		
+		
+		$("#datepicker1").datepicker({
+			showOtherMonths: true,
+			selectOtherMonths: false,
+			changeMonth: true,
+			changeYear: true,
+			dateFormat: 'yy/mm/dd',
+			onSelect: function(dateText,inst){
+				$("#duedate").val(dateText);
+			}
+		});
+
+		
+		$(document).on("focus", ".datepicker_new", function(){
+			$(this).datepicker({dateFormat:"yy-mm-dd", changeMonth:true, changeYear:true});
+		});
+		
+		$(document).on("click", ".c_delete", function(){
+			
+		   if(confirm("是否继续")){
+			   alert("继续");
+		   } else {
+			   alert("不继续");
+		   }
+		
+		});
+		
+		
+		
+		
+		$("#add_new_relation").click(function(){
+				if(num<4) {
+					var tr = "<tr><td><span>联系电话:</span><input></input></td><td><span>关系:</span><select><option value='1'>父亲</option><option value='2'>母亲</option><option value='3'>爷爷</option><option value='4'>奶奶</option><option value='5'>外公</option><option value='6'>外婆</option><option value='7'>其他亲戚</option></select> </td><td><span>姓名:</span><input></input></td><td ><button onclick='onBtnClick(this);'>减少</button></td></tr>";
+					
+					$("#local_tbl").append(tr);
+					num++;
+				}
+			});
+		
+			
+		
+		$("#save").click(function(){
+			var StudentInfo = Bmob.Object.extend("haitun_common_user");
+			var query = new Bmob.Query(StudentInfo);
+			if($("#main_phone").val() == "" || $("#main_name").val() == ""
+			|| $("#manager").val() == "") {
+				alert("姓名、联系方式、学管人员不能为空");
+				return;
+			}
+			query.equalTo("id_ phone", $("#main_phone").val());
+			query.equalTo("name", $("#main_name").val());
+			query.find({
+				success: function(results) {
+					if(results.length > 0) {
+						alert("已有该学生的记录，不可重复录入");
+						return;
+					}
+					// 循环处理查询到的数据
+					/*
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						alert(object.id + ' - ' + object.get('playerName'));
+						var tr=document.getElementById("tr"+(i+1));
+						var a_ele=tr.getElementsByTagName("a");
+						a_ele[0].innerText = object.get('playerName');//object.get('playerName');
+						a_ele[0].name = object.id;//object.get('playerName');
+						tr.cells[1].innerText = object.get('score');
+						tr.cells[2].innerText = object.get('cheatMode');
+						alert(tr.cells[0].value);
+						//$("$tb1").rows[i+1].cells[2].innerText = object.get('score');
+						//$("$tb1").rows[i+1].cells[3].innerText = object.get('cheatMode');
+						//alert(object.id + ' - ' + object.get('playerName'));
+					}
+					*/
+					alert("没有该学生的记录，可以录入");
+					//delete query;
+					var promise = new Bmob.Promise();
+					var AddStudent = Bmob.Object.extend("haitun_common_user");
+					var add_student = new StudentInfo();
+					add_student.set("id_phone", $("#main_phone").val());
+					add_student.set("name", $("#main_name").val());
+					add_student.set("grade", $("#grade").find("option:selected").text());
+					add_student.set("name", $("#manager").val());
+					add_student.set("status", $("#status").find("option:selected").text());
+					$("#local_tbl tr").each(function(i){
+						alert("这是第"+i+"行内容");
+						var tmp="";
+						$(this).children("td").each(function(j){
+							if(j < 3) {
+								if(j==1) {
+									tmp+=$(this).children("select").find("option:selected").text()+";";
+									//alert("第"+j+"个td的内容:"+$(this).children("select").find("option:selected").text());
+								} else {
+									tmp+=$(this).children("input").val()+";";
+									//alert("第"+j+"个td的内容:"+$(this).children("input").val());
+								}
+							}
+						})
+						alert(tmp);
+						add_student.set("parent"+(i+1), tmp);
+						alert("parent"+(i+1));
+					});
+					add_student.set("xiaoban_buy_times", $("#xiaoban_buyhour").val());
+					add_student.set("xiaoban_present_times", $("#xiaoban_gifthour").val());
+					add_student.set("xiaoban_last_buy_times", $("#xiaoban_lasthour").val());
+					add_student.set("xiaoban_last_present_times", $("#xiaoban_lastgifthour").val());
+					
+					add_student.set("onetoone_buy_times", $("#one2one_buyhour").val());
+					add_student.set("onetoone_present_times", $("#one2one_gifthour").val());
+					add_student.set("onetoone_last_buy_times", $("#one2one_lasthour").val());
+					add_student.set("onetoone_last_present_times", $("#one2one_lastgifthour").val());
+					var d = Date.UTC(2005,7,8)
+					alert(d);
+					add_student.set("tuoguan_date", d);//$("#duedate").val()
+					add_student.set("comment", $("#comment").val());
+					alert("add_student");
+					add_student.save(null, {
+					  success: function(add_student) {
+						// 添加成功，返回成功之后的objectId（注意:返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
+						alert('添加数据成功，返回的objectId是:' + add_student.id);
+						promise.resolve(add_student.id);
+						return promise;
+					  },
+					  error: function(add_student, error) {
+						// 添加失败
+						alert('添加数据失败，返回错误信息:' + error.description);
+						promise.reject('添加数据失败');
+						return promise;
+					  }
+					});
+				},
+				error: function(gameScore, error) {
+					// 添加失败
+					alert('添加数据失败，返回错误信息:' + error.description);
+				}
+			});
+			
+			
+		});
+		
+				
+		function addBtnEvent(id){
+            $("#"+id).bind("click",function(){
+                alert("Test");
+				$(this).parent().parent().remove();
+            });
+        }
+					
+		function onBtnClick(obj) {
+		 $(obj).parent().parent().remove();
+		  num--;
+		};
+		
+		
+		
+		
+    </script>
+    
+   </html>

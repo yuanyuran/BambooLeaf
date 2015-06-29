@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../javascripts/my_local.js"></script>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css" />
+	<script>
+	
+		var week = 0;
+		var weekstrlist = new Array();
+		 weekstrlist[0] = "星期一";
+		 weekstrlist[1] = "星期二";
+		 weekstrlist[2] = "星期三";
+		 weekstrlist[3] = "星期四";
+		 weekstrlist[4] = "星期五";
+		 weekstrlist[5] = "星期六";
+		 weekstrlist[6] = "星期日";
+		
+		$(function(){
+			
+			var myDate = new Date();
+			var day = myDate.getDay();
+			if(day == 0) day=7;
+
+			fresh_table(myDate, day, week, $("#teacher_table tr"));
+			
+			//var d = new Date("2008/2/27");
+			//取得当前月份d.getMonth()+1   getMonth是0-11,所以要加1
+			//d.setMonth(d.getMonth() + 6); //加六个月
+			//d.setFullYear(d.getFullYear() + 1);  //加一年
+			//d.setDate(d.getDate() + 2); //加一天
+			//拼起来
+			//alert(d);
+		});
+		
+		
+		
+		function showvalf(){  
+			var value_loc = $.cookie("student_id");
+		};
+   </script>
+   </head>
+  
+   <body onload="showvalf()">
+		<div style="height=60px">
+			<span>当前位置》教师信息》在岗教师》教师详情</span>
+		</div>
+		<hr/>
+		<div>
+			<button class="margin_left" id="update">编辑</button>
+            <button class="margin_left" id="delete">删除</button>
+            <br /><br />
+            <span>姓名：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>年龄：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>所在学校：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <br/><br />
+            <span>学历：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>年级：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>科目：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <br/><br />
+            <span>单价：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>兼职年限：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>联系电话：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <br/><br />
+            <span>状态：</span><span id="name">AAA</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <br/><br />
+            <hr />
+            
+		</div>
+		<span>课表状态：</span>
+            <button  id="pre_week">上一周</button>
+            <button  id="next_week">下一周</button>
+        <br/><br />
+		<table id="teacher_table" border="1" cellspacing="0" cellpadding="0" > <!--width="1200"-->
+			<tr>
+			<th align="left">时间</th>
+			<th align="left">星期一</th>
+			<th align="left">星期二</th>
+			<th align="left">星期三</th>
+			<th align="left">星期四</th>
+			<th align="left">星期五</th>
+			<th align="left">星期六</th>
+			<th align="left">星期天</th>
+			</tr>
+			
+			
+			<tr>
+			<td>8:30~10:00</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            
+            <tr>
+			<td>10:00~11:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+            <tr>
+			<td>12:00~13:30</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>
+			</tr>
+		</table> 
+   </body>
+   
+   <script>
+   	$("#pre_week").click(function(){
+			var myDate = new Date();
+			var day = myDate.getDay();
+			week--;
+			if(day == 0) day=7;
+			fresh_table(myDate, day, week, $("#teacher_table tr"));
+		});
+		
+		$("#next_week").click(function(){
+			var myDate = new Date();
+			var day = myDate.getDay();
+			week++;
+			if(day == 0) day=7;
+			fresh_table(myDate, day, week, $("#teacher_table tr"));
+		});
+   </script>
+
+   </html>

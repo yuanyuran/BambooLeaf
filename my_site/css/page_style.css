@@ -1,0 +1,102 @@
+		.head{
+			margin:0;
+			height: 60px;
+			line-height:60px;
+			border:1px red solid;
+		}
+		.body_left_top{
+			float: left;
+			padding:20px 40px;
+			border:1px green solid;
+			margin-right:10px;	
+		}
+		.detail_panel{
+			float: left;
+			padding:10px 10px;
+			border:1px green solid;
+			margin-right:10px;	
+		}
+		.body_right_top{
+			float: right;
+			padding:30px 60px;
+			border:1px green solid;
+		}
+		
+		.body_left_bottom{
+			padding:10px 20px;
+			float: left;
+			height:100%;
+		}
+		
+		.menu
+		{
+		 font-size:30px;
+		 text-align:center;
+		 padding:20px;
+		 vertical-align:middle;
+		 line-height:40px;
+		 Height:40px;
+		 Width:120px;
+		}
+		
+		.detail_tab
+		{
+		 font-size:20px;
+		 text-align:center;
+		 padding:10px;
+		 vertical-align:middle;
+		 line-height:40px;
+		 Height:40px;
+		 Width:120px;
+		 border:1px black solid;
+		}
+		
+		.menu_btn
+		{
+		 font-size:15px;
+		 text-align:center;
+		 padding:0px;
+		 vertical-align:middle;
+		 Height:50px;
+		 Width:120px;
+		 margin-bottom:15px;
+		 }
+		.head_btn
+		{
+		 font-size:12px;
+		 text-align:center;
+		 padding:0px;
+		 vertical-align:middle;
+		 line-height:22px;
+		 margin-top:15px; 
+		 Height:26px;
+		 Width:60px;
+		}
+		
+		.input_width
+		{
+			 Width:120px;
+		}
+		
+		.margin_left
+		{
+			margin-left:15px;
+		}
+		.margin_right
+		{
+			margin-right:15px;
+		}
+		.Container
+		{
+			width:100%;
+			min-width:1300px;
+			color:#000; 
+		}
+		.table_up{border-top:1px solid #000} 
+		.table_dwon{border-bottom:1px solid #000} 
+		.table_left{border-left:1px solid #000} 
+		.table_right{border-right:1px solid #000} 
+		
+		.banner { position: relative; overflow: auto; }
+    	.banner li { list-style: none; }
+        .banner ul li { float: left; }

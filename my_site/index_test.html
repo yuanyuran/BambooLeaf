@@ -1,0 +1,248 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>chat room demo</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="javascripts/bmobSocketIo.js" type="text/javascript"></script>
+    <script src="javascripts/bmob.js" type="text/javascript"></script>
+	<script src="javascripts/bmob_db_test.js" type="text/javascript"></script>
+</head>
+<body >
+    <h1 align="center" >bmob DB test demo</h1>
+
+    <div>
+		<p>
+        <button name="add" id="add">增加</button><br/>
+		<button name="search" id="search">查找</button><br/><hr/>
+		<button name="update" id="update">修改</button><br/>
+		<button name="delete" id="delete">删除</button>
+		<button name="upload" id="upload">上传</button>
+		<input type="file" id="profilePhotoFileUpload">
+		<div type="text" id="datepicker"></div> 
+		</p>
+    </div>  
+	
+	<table id="tb1" border="1" cellpadding="10">
+		<tr>
+		<th>score</th>
+		<th>playerName</th>
+		<th>cheatMode</th>
+		</tr>
+		<tr id="tr1">
+		<td><a href="" name="1" onclick="jumptoHello(this)">row 1, cell 1</a></td>
+		<td value="">row 1, cell 2</td>
+		<td value="">row 1, cell 3</td>
+		</tr>
+		<tr id="tr2">
+		<td value=""><a href="#">row 2, cell 1</a></td>
+		<td value="">row 2, cell 2</td>
+		<td value="">row 2, cell 3</td>
+		</tr>
+	</table>
+	
+
+  <script language="javascript" type="text/javascript">
+	
+	function jumptoHello(obj) {
+		//alert(obj.text);
+		$.cookie("para",obj.text,{ expires:1 });
+		var value = $.cookie("para");
+		
+		alert(value); 
+		//value_glo = obj.text;
+		//alert(value_glo); 
+		window.open("hello.html");
+		//window.test_val = obj.text;    
+		//alert(test_val);
+		//self.loacation="hello.html";
+		return false;
+	}
+	
+
+	$(function(){
+			//服务器
+		init();
+	/*
+		$("a").click(function() {
+			alert('onclick');
+			jumptoHello(value);
+		});
+		*/
+		$("#datepicker").datepicker(); 
+		
+		$("#add").click(function(){
+			alert('add');
+			var name = new Array;
+			name[0] = "score";
+			name[1] = "playerName";
+			name[2] = "cheatMode";
+			var value = new Array;
+			value[0] = 127;
+			value[1] = "yyr";
+			value[2] = true;
+			var table = "GameScore";
+			var id = add_test(table, name, value).then(function(obj){
+				alert('id: '+ id);
+			});
+			
+			//add_test1();
+		});
+		
+		$("#search").click(function(){
+			alert('search');
+			var GameScore = Bmob.Object.extend("GameScore");
+			var query = new Bmob.Query(GameScore);
+			//query.equalTo("playerName", "bmob");
+			query.find({
+				success: function(results) {
+					alert("共查询到 " + results.length + " 条记录");
+					// 循环处理查询到的数据
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						alert(object.id + ' - ' + object.get('playerName'));
+						var tr=document.getElementById("tr"+(i+1));
+						var a_ele=tr.getElementsByTagName("a");
+						a_ele[0].innerText = object.get('playerName');//object.get('playerName');
+						a_ele[0].name = object.id;//object.get('playerName');
+						tr.cells[1].innerText = object.get('score');
+						tr.cells[2].innerText = object.get('cheatMode');
+						alert(tr.cells[0].value);
+						//$("$tb1").rows[i+1].cells[2].innerText = object.get('score');
+						//$("$tb1").rows[i+1].cells[3].innerText = object.get('cheatMode');
+						//alert(object.id + ' - ' + object.get('playerName'));
+					}
+				},
+				error: function(gameScore, error) {
+					// 添加失败
+					alert('添加数据失败，返回错误信息：' + error.description);
+				}
+			});
+		});
+
+		$("#update").click(function(){
+			alert('update');
+			var GameScore = Bmob.Object.extend("GameScore");
+			var query = new Bmob.Query(GameScore);
+			query.equalTo("playerName", "bmob");
+			query.find({
+				success: function(results) {
+					alert("共查询到 " + results.length + " 条记录");
+					// 循环处理查询到的数据
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						alert(object.id + ' - ' + object.get('playerName'));
+						if(i == 0) {
+							alert('update');
+							//object.fetchWhenSave(true);
+							object.set("playerName", "yyr");
+							object.save(null, {
+							  success: function(gameScore) {
+								// 添加成功，返回成功之后的objectId（注意：返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
+								alert('修改数据成功，返回的objectId是：' + gameScore.id);
+							  },
+							  error: function(gameScore, error) {
+								// 添加失败
+								alert('修改数据失败，返回错误信息：' + error.description);
+							  }
+							});
+						}
+					}
+				},
+				error: function(gameScore, error) {
+					// 添加失败
+					alert('添加数据失败，返回错误信息：' + error.description);
+				}
+			});
+		});
+		
+		$("#delete").click(function(){
+			alert('delete');
+			var GameScore = Bmob.Object.extend("GameScore");
+			var query = new Bmob.Query(GameScore);
+			query.equalTo("playerName", "yyr");
+			query.find({
+				success: function(results) {
+					alert("共查询到 " + results.length + " 条记录");
+					// 循环处理查询到的数据
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						alert(object.id + ' - ' + object.get('playerName'));
+						if(i == 0) {
+							alert('delete');
+							
+							object.destroy({
+							  success: function(myObject) {
+								// 删除成功
+								alert('删除数据成功');
+							  },
+							  error: function(myObject, error) {
+								// 删除失败
+								alert('删除数据失败');
+							  }
+							});
+
+						}
+					}
+				},
+				error: function(gameScore, error) {
+					// 添加失败
+					alert('添加数据失败，返回错误信息：' + error.description);
+				}
+			});
+		});
+		
+		$("#upload").click(function(){
+				alert('upload');
+				var fileUploadControl = $("#profilePhotoFileUpload")[0];
+				if (fileUploadControl.files.length > 0) {
+					var file = fileUploadControl.files[0];
+					var name = "logo.jpg";
+					var file = new Bmob.File(name, file);     
+					file.save().then(function(obj) {
+					  alert(obj.url());
+					}, function(error) {
+					  alert('failed');
+					});
+				}
+		});
+		/*
+	   //初始连接socket.io服务器后，需要监听的事件都写在这个函数内
+		BmobSocketIo.onInitListen = function() {
+		  //订阅GameScore表的数据更新事件
+		  BmobSocketIo.updateTable("Chat");     
+		};
+
+		  //监听服务器返回的更新表的数据
+	   BmobSocketIo.onUpdateTable = function(tablename,data) {
+		 if( tablename=="Chat" ) {
+			// alert(tablename);
+			var content=$("#data");
+			var p = '<p><span style="color:red;">' + data.name+'</span>  '+'<span style="color:green;">'+ data.createdAt+'</span>  '+ ' :<br/> '+data.content+'</p><br/><br/>';
+			content.html(content.html()+p);
+		 }
+	   };
+
+	  //通过“回车”提交聊天信息
+	   $('#name').keydown(function(e) {
+		if (e.keyCode === 13) {
+		  sendMsg();
+		}
+	  });
+
+	  //通过“回车”提交聊天信息
+	   $('#content').keydown(function(e) {
+		if (e.keyCode === 13) {
+		  sendMsg();
+		}
+	  });
+	  */
+  });
+  </script>
+
+
+</body>
+</html>

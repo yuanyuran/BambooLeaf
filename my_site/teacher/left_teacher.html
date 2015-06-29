@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css" />
+	
+   </head>
+   
+   <body>
+		<div class="Container">
+		   <div class="body_left_bottom">
+				<button class="menu_btn" id="tea_list_on">在职教师</button><br/>
+				<button class="menu_btn" id="tea_list_left">离职教师</button><br/>
+				<button class="menu_btn" id="manager_list_on">在职学管</button><br/>
+				<button class="menu_btn" id="manager_list_left">离职学管</button><br/>
+				<button class="menu_btn" id="accountant_list_on">在职会计</button><br/>
+				<button class="menu_btn" id="accountant_list_left">离职会计</button><br/>
+				<button class="menu_btn" id="leave_process">离职交接</button><br/>
+		   </div>
+	  </div>
+   </body>
+   
+   <script>
+	$("#tea_list_on").click(function() {
+		$.cookie("teacher_status", "1");
+		window.parent.right.location="right_teacher_first.html"; 
+	});
+	
+	$("#tea_list_left").click(function() {
+		$.cookie("teacher_status", "0");
+		window.parent.right.location="right_teacher_first.html"; 
+	});
+	
+	$("#manager_list_on").click(function() {
+		$.cookie("teacher_status", "1");
+		window.parent.right.location="right_manager_first.html"; 
+	});
+	
+	$("#manager_list_left").click(function() {
+		$.cookie("teacher_status", "0");
+		window.parent.right.location="right_manager_first.html"; 
+	});
+	
+	$("#accountant_list_on").click(function() {
+		$.cookie("teacher_status", "1");
+		window.parent.right.location="right_accounter_first.html"; 
+	});
+	
+	$("#accountant_list_left").click(function() {
+		$.cookie("teacher_status", "0");
+		window.parent.right.location="right_accounter_first.html"; 
+	});
+	
+	$("#leave_process").click(function() {
+		window.parent.right.location="right_teacher_exchange.html"; 
+	});
+	
+	
+   </script>
+   
+   </html>

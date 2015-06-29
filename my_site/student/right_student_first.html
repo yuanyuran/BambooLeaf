@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css"/>
+	
+   </head>
+  
+   <body>
+		<div style="height=60px">
+			<span id="title">当前位置》学生信息》在读学生</span>
+		</div>
+		<hr/>
+		<div style=" height=60px">
+			<button class="margin_left" id="add_new">新增</button>
+            <span>&nbsp;&nbsp;</span>
+			<a href="#" style="float:right; margin-right:20px"><50></a>
+			<a href="#" style="float:right; margin-right:20px"><20></a>
+			<a href="#" style="float:right; margin-right:20px"><10></a>
+		</div>
+		<hr/>
+		<table  border="1" cellspacing="0" cellpadding="0" > <!--width="1200"-->
+			<tr>
+			<th align="left">序号</th>
+            <th align="left">编号</th>
+			<th align="left">姓名</th>
+            <th align="left">联系电话</th>
+            <th align="left">入学时间</th>
+			<th align="left">年级</th>
+			<th align="left">班级课时<br/>(剩余/赠送)</th>
+			<th align="left">一对一课时<br/>(剩余/赠送)</th>
+			<th align="left">托管<br/>(截止日期)</th>
+            <th align="left">一对一</th>
+            <th align="left">班级</th>
+            <th align="left">学管</th>
+            <th align="left">上周课时消耗</th>
+            <!--
+			<th align="left">科目一</th>
+			<th align="left">形式</th>
+			<th align="left">老师</th>
+			<th align="left">科目二</th>
+			<th align="left">形式</th>
+			<th align="left">老师</th>
+            -->
+			</tr>
+			
+			
+			<tr>
+			<td>1</td>
+            <td>0571</td>
+			<td><a href="javascript:void(0);" onclick="detail($(this),$(this).parent().next())">AAA</a></td>
+            <td>13855668745</td>
+            <td>2015/06/28</td>
+			<td>初一</td>
+			<td>100/20</td>
+			<td>80/30</td>
+			<td>2015-07-20</td>
+            <td>英语</td>
+            <td>物理，数学</td>
+            <td>李老师</td>
+            <td>20</td>
+            <!--
+			<td>英语</td>
+			<td>小班</td>
+			<td>李老师</td>
+			<td>语文</td>
+			<td>一对一</td>
+			<td>王老师</td>
+            -->
+			</tr>
+            
+            <tr >
+			<td>2</td>
+            <td>0572</td>
+			<td><a href="javascript:void(0);" onclick="detail($(this),$(this).parent().next())">BBB</a></td>
+            <td>13855668735</td>
+            <td>2015/06/28</td>
+			<td>高一</td>
+			<td>110/20</td>
+			<td>90/30</td>
+			<td>2014-07-20</td>
+             <td>英语</td>
+            <td>物理，数学</td>
+            <td>王老师</td>
+            <td>30</td>
+			<!--
+			<td>英语</td>
+			<td>小班</td>
+			<td>李老师</td>
+			<td>语文</td>
+			<td>一对一</td>
+			<td>王老师</td>
+            -->
+			</tr>
+			
+		</table>
+		
+        <span>【首页】</span>&nbsp;&nbsp;
+        <span>【上一页】</span>&nbsp;&nbsp;
+        <span>【下一页】</span>&nbsp;&nbsp;
+        <span>【尾页】</span>&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>现在是第1页，共10页，94条记录</span>
+   </body>
+    <script>
+	   $(document).ready(function(){
+		   var value_loc = $.cookie("student_type");
+		   if(value_loc == "2"){
+			  $("#title").text("当前位置》学生信息》低频预警学生");
+			  $("#add_new").hide();
+		   } else if(value_loc == "3"){
+			  $("#title").text("当前位置》学生信息》课时预警学生");
+			  $("#add_new").hide();
+		   } else if(value_loc == "4"){
+			  $("#title").text("当前位置》学生信息》冷冻学生");
+			  $("#add_new").hide();
+		   }  else if(value_loc == "5"){
+			  $("#title").text("当前位置》学生信息》自然终止学生");
+			  $("#add_new").hide();
+		   }  else if(value_loc == "6"){
+			  $("#title").text("当前位置》学生信息》退费学生");
+			  $("#add_new").hide();
+		   } else {
+			  $("#title").text("当前位置》学生信息》在读学生");
+			   $("#add_new").show();
+		   }
+	   });
+		
+		function detail(obj1,obj2){
+			//alert(obj1.text());
+			//alert(obj2.text());
+			$.cookie("student_name",obj1.text());
+			$.cookie("student_id",obj2.text());
+			//var value = $.cookie("para");
+			window.parent.right.location="right_student_update.html"; 
+			return false;
+			 
+		} 
+		
+		$("#add_new").click(function(){
+			$.cookie('student_id', null);
+			window.parent.right.location="right_student_new.html"; 
+		});
+		
+   </script>
+   </html>

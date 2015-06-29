@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css" />
+	<script type="text/javascript" src="../javascripts/jquery-ui-1.11.4/jquery-ui.js"></script>
+    <link rel="stylesheet" type="text/css" href="../javascripts/jquery-ui-1.11.4/jquery-ui.css"/>
+    
+   </head>
+  
+   <body>
+		<div>
+        	<span>课表克隆<br/>(先选中左侧日历中的日期，再选则右侧课表中的日期，点击“克隆”按钮，进行复制，<b>可一次选择多天</b>)</span><br/><br/>
+            
+        	<div style="float:left" id="datepicker1"></div>
+            <span class="margin_left margin_right" style="float:left">的课程表等同于</span>
+ 			<div style="float:left" id="datepicker2"></div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="margin_left" id="save">保存</button>
+		</div>
+        <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        <span>2015-06-08</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <span>2015-06-15</span>
+   </body>
+    <script>
+		$("#datepicker1").datepicker({
+			showOtherMonths: true,
+			selectOtherMonths: false,
+			onSelect: function(dateText,inst){
+				alert("您选择的日期是："+dateText)
+			}
+		});
+		$("#datepicker2").datepicker({
+			showOtherMonths: true,
+			selectOtherMonths: false,
+			onSelect: function(dateText,inst){
+				alert("您选择的日期是："+dateText)
+			}
+		});
+		
+		
+   </script>
+   </html>

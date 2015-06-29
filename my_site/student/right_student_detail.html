@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css" />
+	<script>
+		function showvalf(){  
+			var value_loc = $.cookie("para");
+		};
+   </script>
+   </head>
+  
+   <body onload="showvalf()">
+		<div style="height=60px">
+			<span>当前位置》学生信息》在读学生》在读学生详情</span>
+		</div>
+		<hr/>
+        <table width="769">
+			<tr>
+			<th ><div id="info" class="detail_tab" >学生信息</div></td>
+            <th ><div id="class_record" class="detail_tab" >上课记录</div></td>
+            <th ><div id="track" class="detail_tab" >成绩追踪</div></td>
+            <th ><div id="schedule" class="detail_tab" >作息时间</div></td>
+            </tr>
+         </table>
+      <hr/>
+		
+        
+        <hr />
+        <div>
+			<button class="margin_left" id="update">编辑</button>
+            <button class="margin_left" id="delete">删除</button>
+            <br /><br />&nbsp;
+            <select  id="year" >  
+                <option value="2015">2015</option>  
+                <option value="2016">2016</option>  
+                <option value="2017">2017</option> 
+                <option value="2018">2018</option> 
+                <option value="2019">2019</option>  
+            </select>  
+            <select  id="month" >  
+                <option value="1">一月</option>  
+                <option value="2">二月</option>  
+                <option value="3">三月</option> 
+                <option value="4">四月</option> 
+                <option value="5">五月</option>  
+                <option value="6">六月</option>  
+                <option value="7">七月</option>  
+                <option value="8">八月</option> 
+                <option value="9">九月</option> 
+                <option value="10">十月</option> 
+                <option value="11">十一月</option> 
+                <option value="12">十二月</option>
+            </select> 
+            <br/><br/>
+            <table  border="1" cellspacing="0" cellpadding="0" > <!--width="1200"-->
+			<tr>
+			<th align="left">日期</th>
+			<th align="left">课次</th>
+			<th align="left">教学内容</th>
+			<th align="left">学习建议</th>
+			<th align="left">课后作业</th>
+			</tr>
+			
+			
+			<tr>
+			<td>2015.5.26</td>
+			<td>19</td>
+			<td>高三物理牛顿第一定律</td>
+			<td>课后多复习</td>
+			<td>有</td>
+			</tr>
+            
+            <tr>
+			<td>2015.5.22</td>
+			<td>18</td>
+			<td>高三物理牛顿第二定律</td>
+			<td>课后多复习</td>
+			<td>无</td>
+			</tr>
+            </table>
+        </div>
+        
+        
+   </body>
+	<script>
+    	$("#update").click(function(){
+			$("#name").attr("disabled", true);
+		});
+		$("#delete").click(function(){
+			$("#name").attr("disabled", false);
+		});
+    </script>
+   </html>

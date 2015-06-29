@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+    <script type="text/javascript" src="../javascripts/bmob.js"></script>
+    <script type="text/javascript" src="../javascripts/bmob_db_test.js"></script>
+    <script type="text/javascript" src="../javascripts/bmobSocketIo.js"></script>
+    <script type="text/javascript" src="../javascripts/jquery-ui-1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="../javascripts/highcharts.js"></script>
+    <script type="text/javascript" src="../javascripts/my_local.js"></script>
+    <link rel="stylesheet" type="text/css" href="../javascripts/jquery-ui-1.11.4/jquery-ui.css"/>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css" />
+    <style>
+    	.delete_connecter{
+			font-size:24px;
+		}
+		
+		input{
+			Width:120px;
+		}
+		
+		select{
+			Width:120px;
+		}
+		
+		span{
+			margin-left:15px;
+		};
+    </style>
+  </head>
+  
+   <body>
+		<div style="height=60px">
+			<span id="title">当前位置》学生信息》在读学生》新增学生</span>
+		</div>
+        <hr/>
+        <!--
+        <table width="769">
+			<tr>
+			<th ><div id="info" class="detail_tab" >个人详情</div></td>
+            <th ><div id="class_record" class="detail_tab" >上课记录</div></td>
+            <th ><div id="track" class="detail_tab">成绩追踪</div></td>
+            <th ><div id="schedule" class="detail_tab" >作息时间</div></td>
+            </tr>
+         </table>
+		<hr/>
+        -->
+        <div id="buttons">
+        	<button class="margin_left" id="save">保存</button>
+         </div>
+		<div id="student_info" style=" height=60px">
+            <br /><br />
+            <span >学生姓名:</span><input  id="main_name"></input>
+            <span >学生编号:</span><input   id="id"></input>
+            <span >学校:</span><input   id="school"></input>
+            <span>年级:</span>
+            <select  id="grade" >  
+                <option value="1">一年级</option>  
+                <option value="2">二年级</option>  
+                <option value="3">三年级</option> 
+                <option value="4">四年级</option> 
+                <option value="5">五年级</option>  
+                <option value="6">六年级</option> 
+                <option value="7">初一</option>  
+                <option value="8">初二</option>  
+                <option value="9">初三</option> 
+                <option value="10">高一</option>  
+                <option value="11">高二</option> 
+                <option value="12">高三</option> 
+            </select>  
+ 
+            <br /><br />
+			<table  id="local_tbl" cellspacing="0" cellpadding="2">
+			<tr>
+			<td style="background-color:blue">
+            <span>联系电话:</span><input id="phone1"></input>
+			</td>
+			<td>
+            <span style="margin-left:40px">关系:</span>
+            <select>  
+                <option value="1">父亲</option>  
+                <option value="2">母亲</option>  
+                <option value="3">爷爷</option> 
+                <option value="4">奶奶</option>  
+                <option value="5">外公</option>  
+                <option value="6">外婆</option> 
+                <option value="7">其他亲戚</option> 
+            </select> 
+			</td>
+			<td>
+            <span style="margin-left:20px">姓名:</span><input id="name1"></input>
+			</td>
+			<td>
+            <button class="margin_left" id="add_new_relation">增加</button>
+			</td>
+			</tr>
+			</table>
+            
+			<br />
+            <!--
+            <span>联系电话:</span><input id="phone"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>关系:</span>
+            <select>  
+                <option value="1">父亲</option>  
+                <option value="2">母亲</option>  
+                <option value="3">爷爷</option> 
+                <option value="4">奶奶</option>  
+                <option value="5">外公</option>  
+                <option value="6">外婆</option> 
+                <option value="7">其他亲戚</option> 
+            </select> &nbsp;&nbsp;&nbsp;&nbsp;
+            <span>姓名:</span><input id="name"></input>&nbsp;&nbsp;&nbsp;&nbsp;
+            <button id="delete_new_relation">减少</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <br /><br />
+            -->
+            <span>学生性别:</span>
+            <select id="sex">
+            	<option value="1">男</option>  
+                <option value="2">女</option>   
+            </select>        
+            <span>所属学管:</span>
+            <select id="manager">
+            	<option value="1">张老师</option>  
+                <option value="2">李老师</option>  
+                <option value="3">王老师</option> 
+            </select>
+            <span>状态:</span>
+            <select id="status" >  
+                <option value="1">正常上课</option>  
+                <option value="2">冷冻名单</option>  
+                <option value="3">学习结束</option> 
+            </select>
+            <span>学生电话:</span><input id="student_phone"></input>
+            <br /><br />
+            <span>小班:</span>
+             <br /><br />
+            <span>购买课时:</span><input id="xiaoban_buyhour"></input>
+            <span>赠送课时:</span><input id="xiaoban_gifthour"></input>
+            <span>剩余课时:</span><input id="xiaoban_lasthour"></input>
+            <span>剩余赠送课时:</span><input id="xiaoban_lastgifthour"></input>
+            <br /><br />
+            <span>一对一:</span>
+            <br /><br />
+            <span>购买课时:</span><input id="one2one_buyhour"></input>
+            <span>赠送课时:</span><input id="one2one_gifthour"></input>
+            <span>剩余课时:</span><input id="one2one_lasthour"></input>
+            <span>剩余赠送课时:</span><input id="one2one_lastgifthour"></input>
+            <br /><br />
+            <span>托管:</span>
+            <br /><br />
+            <span>截止日期:</span><input type="text" id="duedate"></input>
+            <button class="margin_left" onclick="$('#duedate').val('')">清空</button>
+            <br /><br />
+            
+            <!--<span>科目:</span>
+            <select  id="class" >  
+                <option value="1">语文</option>  
+                <option value="2">数学</option>  
+                <option value="3">外语</option> 
+                <option value="4">物理</option>  
+                <option value="5">化学</option>  
+                <option value="6">历史</option> 
+                <option value="7">地理</option> 
+            </select> 
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span>形式:</span>
+            <select  id="class_type" >  
+                <option value="1">一对一</option>  
+                <option value="2">小班</option>  
+                <option value="3">托管</option> 
+            </select> 
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span>老师:</span><button id="add_new_class">增加</button>&nbsp;&nbsp;&nbsp;&nbsp;
+            <br /><br />
+            -->
+            <table  id="local_tbl_class" cellspacing="0" cellpadding="2">
+			<tr>
+			<td>
+            <span>所报科目:</span>
+            <select>  
+                <option value="1">语文</option>  
+                <option value="2">数学</option>  
+                <option value="3">英语</option> 
+            </select> 
+			</td>
+			<td>
+            <span style="margin-left:40px">形式:</span>
+            <select>  
+                <option value="1">一对一</option>  
+                <option value="2">小班</option>  
+                <option value="3">托管</option> 
+            </select> 
+			</td>
+			<td>
+            <button class="margin_left" id="add_new_class">增加</button>
+			</td>
+			</tr>
+			</table>
+            <br />
+            <span style="vertical-align:top">备注:</span><textarea rows="8" cols="50" id="comment"></textarea>     
+		</div>
+        
+   </body>
+   	<script>
+		var num=1;
+		var datetxt="";
+		var week = 0;
+		var weekstrlist = new Array();
+		 weekstrlist[0] = "星期一";
+		 weekstrlist[1] = "星期二";
+		 weekstrlist[2] = "星期三";
+		 weekstrlist[3] = "星期四";
+		 weekstrlist[4] = "星期五";
+		 weekstrlist[5] = "星期六";
+		 weekstrlist[6] = "星期日";
+		 
+		 $("#pre_week").click(function(){
+			var myDate = new Date();
+			var day = myDate.getDay();
+			week--;
+			if(day == 0) day=7;
+			fresh_table(myDate, day, week, $("#schedule tr"));
+		});
+		
+		$("#next_week").click(function(){
+			var myDate = new Date();
+			var day = myDate.getDay();
+			week++;
+			if(day == 0) day=7;
+			fresh_table(myDate, day, week, $("#schedule tr"));
+		});
+		
+		$(document).ready(function(){
+			$("#duedate").datepicker({
+				showOtherMonths: true,
+				selectOtherMonths: false,
+				changeMonth: true,
+				changeYear: true,
+				dateFormat: 'yy/mm/dd',
+				onSelect: function(dateText,inst){
+					$("#duedate").val(dateText);
+				}
+			});
+	   });
+
+		
+		$(document).on("focus", ".datepicker_new", function(){
+			$(this).datepicker({dateFormat:"yy-mm-dd", changeMonth:true, changeYear:true});
+		});
+		
+		$(document).on("click", ".c_delete", function(){
+			
+		   if(confirm("是否继续")){
+			   alert("继续");
+		   } else {
+			   alert("不继续");
+		   }
+		
+		});
+		
+		
+		
+		
+		$("#add_new_relation").click(function(){
+				if(num<4) {
+					var tr = "<tr><td><span>联系电话:</span><input></input></td><td><span style='margin-left:40px'>关系:</span><select><option value='1'>父亲</option><option value='2'>母亲</option><option value='3'>爷爷</option><option value='4'>奶奶</option><option value='5'>外公</option><option value='6'>外婆</option><option value='7'>其他亲戚</option></select></td><td><span style='margin-left:20px'>姓名:</span><input></input></td><td ><button class='margin_left' onclick='onBtnClick(this);'>减少</button></td></tr>";
+					
+					$("#local_tbl").append(tr);
+					num++;
+				}
+			});
+			
+		$("#add_new_class").click(function(){
+				
+					var tr = "<tr><td><span>所报科目:</span><select><option value='1'>语文</option><option value='2'>数学</option><option value='3'>英语</option></select></td><td><span style='margin-left:40px'>形式:</span><select><option value='1'>一对一</option><option value='2'>小班</option><option value='3'>托管</option></select></td><td ><button class='margin_left' onclick='onBtnClick_class(this);'>减少</button></td></tr>";
+					
+					$("#local_tbl_class").append(tr);
+			
+			});
+		
+			
+		
+		$("#save").click(function(){
+			var StudentInfo = Bmob.Object.extend("haitun_common_user");
+			var query = new Bmob.Query(StudentInfo);
+			if($("#id").val() == "" || $("#main_name").val() == ""
+			|| $("#manager").val() == "") {
+				alert("姓名、编号、学管人员不能为空");
+				return;
+			}
+			query.equalTo("id_ phone", $("#id").val());
+			query.equalTo("name", $("#main_name").val());
+			query.find({
+				success: function(results) {
+					if(results.length > 0) {
+						alert("已有该学生的记录，不可重复录入");
+						return;
+					}
+					// 循环处理查询到的数据
+					/*
+					for (var i = 0; i < results.length; i++) {
+						var object = results[i];
+						alert(object.id + ' - ' + object.get('playerName'));
+						var tr=document.getElementById("tr"+(i+1));
+						var a_ele=tr.getElementsByTagName("a");
+						a_ele[0].innerText = object.get('playerName');//object.get('playerName');
+						a_ele[0].name = object.id;//object.get('playerName');
+						tr.cells[1].innerText = object.get('score');
+						tr.cells[2].innerText = object.get('cheatMode');
+						alert(tr.cells[0].value);
+						//$("$tb1").rows[i+1].cells[2].innerText = object.get('score');
+						//$("$tb1").rows[i+1].cells[3].innerText = object.get('cheatMode');
+						//alert(object.id + ' - ' + object.get('playerName'));
+					}
+					*/
+					alert("没有该学生的记录，可以录入");
+					//delete query;
+					var promise = new Bmob.Promise();
+					var AddStudent = Bmob.Object.extend("haitun_common_user");
+					var add_student = new StudentInfo();
+					add_student.set("id_phone", $("#id").val());
+					add_student.set("name", $("#main_name").val());
+					add_student.set("grade", $("#grade").find("option:selected").text());
+					add_student.set("name", $("#manager").val());
+					add_student.set("status", $("#status").find("option:selected").text());
+					$("#local_tbl tr").each(function(i){
+						alert("这是第"+i+"行内容");
+						var tmp="";
+						$(this).children("td").each(function(j){
+							if(j < 3) {
+								if(j==1) {
+									tmp+=$(this).children("select").find("option:selected").text()+";";
+									//alert("第"+j+"个td的内容:"+$(this).children("select").find("option:selected").text());
+								} else {
+									tmp+=$(this).children("input").val()+";";
+									//alert("第"+j+"个td的内容:"+$(this).children("input").val());
+								}
+							}
+						})
+						alert(tmp);
+						add_student.set("parent"+(i+1), tmp);
+						alert("parent"+(i+1));
+					});
+					add_student.set("xiaoban_buy_times", $("#xiaoban_buyhour").val());
+					add_student.set("xiaoban_present_times", $("#xiaoban_gifthour").val());
+					add_student.set("xiaoban_last_buy_times", $("#xiaoban_lasthour").val());
+					add_student.set("xiaoban_last_present_times", $("#xiaoban_lastgifthour").val());
+					
+					add_student.set("onetoone_buy_times", $("#one2one_buyhour").val());
+					add_student.set("onetoone_present_times", $("#one2one_gifthour").val());
+					add_student.set("onetoone_last_buy_times", $("#one2one_lasthour").val());
+					add_student.set("onetoone_last_present_times", $("#one2one_lastgifthour").val());
+					var d = Date.UTC(2005,7,8)
+					alert(d);
+					add_student.set("tuoguan_date", d);//$("#duedate").val()
+					add_student.set("comment", $("#comment").val());
+					alert("add_student");
+					add_student.save(null, {
+					  success: function(add_student) {
+						// 添加成功，返回成功之后的objectId（注意:返回的属性名字是id，不是objectId），你还可以在Bmob的Web管理后台看到对应的数据
+						alert('添加数据成功，返回的objectId是:' + add_student.id);
+						promise.resolve(add_student.id);
+						return promise;
+					  },
+					  error: function(add_student, error) {
+						// 添加失败
+						alert('添加数据失败，返回错误信息:' + error.description);
+						promise.reject('添加数据失败');
+						return promise;
+					  }
+					});
+				},
+				error: function(gameScore, error) {
+					// 添加失败
+					alert('添加数据失败，返回错误信息:' + error.description);
+				}
+			});
+			
+			
+		});
+		
+					
+		function onBtnClick(obj) {
+		 $(obj).parent().parent().remove();
+		  num--;
+		};	
+		
+		function onBtnClick_class(obj) {
+		 $(obj).parent().parent().remove();
+		};	
+		
+    </script>
+    
+   </html>

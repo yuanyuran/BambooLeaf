@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+	
+	<script src="../javascripts/jquery-2.1.4.min.js" type="text/javascript"></script>
+	<script src="../javascripts/jquery.cookie.js" type="text/javascript"></script>
+	<link  rel="stylesheet" href="../css/page_style.css" type="text/css" />
+	
+   </head>
+  
+   <body>
+		<div style="height=60px">
+			<span id="title">当前位置》教师信息》在职学管</span>
+		</div>
+		<hr/>
+		<div style=" height=60px">
+			<button class="margin_left" id="add_new">新增</button>
+			<span>&nbsp;&nbsp;</span>
+			<a href="#" style="float:right; margin-right:20px"><50></a>
+			<a href="#" style="float:right; margin-right:20px"><20></a>
+			<a href="#" style="float:right; margin-right:20px"><10></a>
+		</div>
+		<hr/>
+		<table  border="1" cellspacing="0" cellpadding="0" > <!--width="1200"-->
+			<tr>
+			<th align="left">序号</th>
+			<th align="left">姓名</th>
+			<th align="left">联系电话</th>
+			<th align="left">年龄</th>
+			<th align="left">学历</th>
+			<th align="left">毕业院校</th>
+			<th align="left">工作年限</th>
+			</tr>
+			
+			
+			<tr>
+			<td>1</td>
+			<td><a href="javascript:void(0);" onclick="detail($(this),$(this).parent().next())">AAA</a></td>
+			<td>13866558785</td>
+			<td>45</td>
+			<td>本科</td>
+			<td>南师大</td>
+			<td>4</td>
+			</tr>
+            
+            <tr>
+			<td>1</td>
+			<td><a href="javascript:void(0);" onclick="detail($(this),$(this).parent().next())">BBB</a></td>
+			<td>138665585785</td>
+			<td>35</td>
+			<td>本科</td>
+			<td>南师大</td>
+			<td>5</td>
+			</tr>
+			
+		</table>
+		
+		<span>【首页】</span>&nbsp;&nbsp;
+        <span>【上一页】</span>&nbsp;&nbsp;
+        <span>【下一页】</span>&nbsp;&nbsp;
+        <span>【尾页】</span>&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>现在是第1页，共10页，94条记录</span>
+   </body>
+    <script>
+		$(document).ready(function(){
+			var status = $.cookie("teacher_status");
+			if(status == "1") {
+				$("#title").text("当前位置》教师信息》在职学管");
+				$("#add_new").show();
+			} else {
+				$("#title").text("当前位置》教师信息》离职学管");
+				$("#add_new").hide();
+			}
+		});
+			
+		function detail(obj1,obj2){
+			$.cookie("teacher_name",obj1.text());
+			$.cookie("teacher_id",obj2.text());
+			//var value = $.cookie("para");
+			window.parent.right.location="right_manager_detail.html"; 
+			return false;
+		} 
+		$("#add_new").click(function(){
+			window.parent.right.location="right_manager_newupdate.html"; 
+		})
+   </script>
+   </html>
